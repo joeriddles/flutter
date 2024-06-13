@@ -310,6 +310,12 @@ Map<String, dynamic> getDesiredCapabilities(
                   'v8,blink.console,benchmark,blink,'
                   'blink.user_timing',
             },
+            // Automatically grant these permissions without requiring user interaction
+            'prefs': <String, int>{
+              'profile.default_content_setting_values.media_stream_mic': 1,
+              'profile.default_content_setting_values.media_stream_camera': 1,
+              'profile.default_content_setting_values.midi_sysex': 1,
+            }
           },
         },
       Browser.firefox => <String, dynamic>{
