@@ -302,7 +302,6 @@ Map<String, dynamic> getDesiredCapabilities(
               '--no-default-browser-check',
               '--no-sandbox',
               '--no-first-run',
-              '--remote-debugging-port=9222',
               if (headless!) '--headless',
               ...webBrowserFlags,
             ],
