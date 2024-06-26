@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:args/args.dart';
 import 'package:meta/meta.dart';
@@ -145,7 +146,9 @@ class DriveCommand extends RunCommandBase {
         help: 'Timeout the test after the given number of seconds. If the '
               '"--screenshot" option is provided, a screenshot will be taken '
               'before exiting. Defaults to no timeout.',
-        valueHelp: '360');
+        valueHelp: '360')
+      ..addOption('driver-environment',
+        help: 'Additional environment variables for the Flutter driver');
   }
 
   final Signals signals;
@@ -298,10 +301,18 @@ class DriveCommand extends RunCommandBase {
         );
       }
 
+      final String? driverEnvironment = stringArg('driver-environment');
+      Map<String, String> environment = <String, String>{};
+      if (driverEnvironment != null) {
+        environment = (jsonDecode(driverEnvironment) as Map<String, dynamic>)
+          .map((String key, dynamic value) => MapEntry<String, String>(key, value.toString())
+        );
+      }
+
       final Future<int> testResultFuture = driverService.startTest(
         testFile,
         stringsArg('test-arguments'),
-        <String, String>{},
+        environment,
         packageConfig,
         chromeBinary: stringArg('chrome-binary'),
         headless: boolArg('headless'),
