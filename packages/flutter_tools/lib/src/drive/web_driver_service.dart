@@ -147,7 +147,7 @@ class WebDriverService extends DriverService {
     int? driverPort,
     List<String> webBrowserFlags = const <String>[],
     List<String>? browserDimension,
-    List<String>? browserCoordinates,
+    List<String>? browserLocation,
     String? profileMemory,
   }) async {
     late async_io.WebDriver webDriver;
@@ -187,10 +187,10 @@ class WebDriverService extends DriverService {
 
       late int posX = 0;
       late int posY = 0;
-      if (browserCoordinates != null) {
+      if (browserLocation != null) {
         try {
-          posX = int.parse(browserCoordinates![0]);
-          posY = int.parse(browserCoordinates[1]);
+          posX = int.parse(browserLocation![0]);
+          posY = int.parse(browserLocation[1]);
         } on FormatException catch (ex) {
           throwToolExit('Dimension provided to --browser-coordinates is invalid: $ex');
         }

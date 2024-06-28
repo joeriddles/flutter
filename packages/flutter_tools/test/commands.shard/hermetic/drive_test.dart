@@ -653,7 +653,7 @@ class NeverEndingDriverService extends Fake implements DriverService {
       int? driverPort,
       List<String>? webBrowserFlags,
       List<String>? browserDimension,
-      List<String>? browserCoordinates,
+      List<String>? browserLocation,
       String? profileMemory,
     }) async {
       callback();
@@ -684,7 +684,7 @@ class FailingFakeDriverService extends Fake implements DriverService {
       int? driverPort,
       List<String>? webBrowserFlags,
       List<String>? browserDimension,
-      List<String>? browserCoordinates,
+      List<String>? browserLocation,
       String? profileMemory,
     }) async => 1;
 }
