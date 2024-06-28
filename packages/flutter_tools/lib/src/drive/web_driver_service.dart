@@ -147,6 +147,7 @@ class WebDriverService extends DriverService {
     int? driverPort,
     List<String> webBrowserFlags = const <String>[],
     List<String>? browserDimension,
+    List<String>? browserCoordinates,
     String? profileMemory,
   }) async {
     late async_io.WebDriver webDriver;
@@ -183,8 +184,20 @@ class WebDriverService extends DriverService {
       } on FormatException catch (ex) {
         throwToolExit('Dimension provided to --browser-dimension is invalid: $ex');
       }
+
+      late int posX = 0;
+      late int posY = 0;
+      if (browserCoordinates != null) {
+        try {
+          posX = int.parse(browserCoordinates![0]);
+          posY = int.parse(browserCoordinates[1]);
+        } on FormatException catch (ex) {
+          throwToolExit('Dimension provided to --browser-coordinates is invalid: $ex');
+        }
+      }
+
       final async_io.Window window = await webDriver.window;
-      await window.setLocation(const math.Point<int>(0, 0));
+      await window.setLocation(math.Point<int>(posX, posY));
       await window.setSize(math.Rectangle<int>(0, 0, x, y));
     }
     final int result = await _processUtils.stream(<String>[

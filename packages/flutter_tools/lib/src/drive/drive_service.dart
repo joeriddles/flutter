@@ -99,6 +99,7 @@ abstract class DriverService {
     int? driverPort,
     List<String> webBrowserFlags,
     List<String>? browserDimension,
+    List<String>? browserCoordinates,
     String? profileMemory,
   });
 
@@ -257,6 +258,7 @@ class FlutterDriverService extends DriverService {
     int? driverPort,
     List<String> webBrowserFlags = const <String>[],
     List<String>? browserDimension,
+    List<String>? browserCoordinates,
     String? profileMemory,
   }) async {
     if (profileMemory != null) {

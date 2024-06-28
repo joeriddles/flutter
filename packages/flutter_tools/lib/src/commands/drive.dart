@@ -318,6 +318,7 @@ class DriveCommand extends RunCommandBase {
         headless: boolArg('headless'),
         webBrowserFlags: stringsArg(FlutterOptions.kWebBrowserFlag),
         browserDimension: stringArg('browser-dimension')!.split(','),
+        browserCoordinates: stringArg('browser-coordinates')!.split(','),
         browserName: stringArg('browser-name'),
         driverPort: stringArg('driver-port') != null
           ? int.tryParse(stringArg('driver-port')!)
