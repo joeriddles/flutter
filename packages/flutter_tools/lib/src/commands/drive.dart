@@ -127,6 +127,12 @@ class DriveCommand extends RunCommandBase {
               'This will affect screenshot and all offset-related actions.',
         valueHelp: 'width,height',
       )
+      ..addOption('browser-location',
+        defaultsTo: '0,0',
+        help: 'The position of the browser when running a Flutter Web test. '
+              'This may affect screenshot and all offset-related actions.',
+        valueHelp: 'x,y',
+      )
       ..addFlag('android-emulator',
         defaultsTo: true,
         help: 'Whether to perform Flutter Driver testing using an Android Emulator. '
