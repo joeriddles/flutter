@@ -126,6 +126,12 @@ class DriveCommand extends RunCommandBase {
               'This will affect screenshot and all offset-related actions.',
         valueHelp: 'width,height',
       )
+      ..addOption('browser-location',
+        defaultsTo: '0,0',
+        help: 'The position of the browser when running a Flutter Web test. '
+              'This may affect screenshot and all offset-related actions.',
+        valueHelp: 'x,y',
+      )
       ..addFlag('android-emulator',
         defaultsTo: true,
         help: 'Whether to perform Flutter Driver testing using an Android Emulator. '
@@ -308,6 +314,7 @@ class DriveCommand extends RunCommandBase {
         headless: boolArg('headless'),
         webBrowserFlags: stringsArg(FlutterOptions.kWebBrowserFlag),
         browserDimension: stringArg('browser-dimension')!.split(','),
+        browserLocation: stringArg('browser-location')!.split(','),
         browserName: stringArg('browser-name'),
         driverPort: stringArg('driver-port') != null
           ? int.tryParse(stringArg('driver-port')!)
